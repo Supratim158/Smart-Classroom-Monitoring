@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attendance</title>
+
+  <!-- Bootstrap + Fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}" />
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #dbeafe, #f0fdfa);
+      color: #1e293b;
+    }
+
+    h2 {
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #3b82f6, #6366f1);
+      border: none;
+      font-weight: 500;
+      border-radius: 10px;
+    }
+
+    .table thead th {
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container mt-5">
+    <h2 class="mb-4 text-center">📋 Student Attendance</h2>
+
+    <div class="card p-4">
+      <table class="table table-hover text-center">
+        <thead class="table-dark">
+          <tr>
+            <th>Sr. No.</th>
+            <th>Student Name</th>
+            <th>Status</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if attendance %}
+            {% for row in attendance %}
+              <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td><span class="badge bg-success">{{ row[3] }}</span></td>
+                <td>{{ row[4] }}</td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="4" class="text-muted">No attendance recorded yet.</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Start Attendance Button -->
+    <form action="/start-attendance" method="POST" class="text-center mt-4">
+      <button type="submit" class="btn btn-primary px-5 py-2">
+        📷 Start Attendance
+      </button>
+    </form>
+
+    <!-- Back Button -->
+    <div class="text-center mt-3">
+      <a href="/" class="btn btn-outline-secondary">← Back to Dashboard</a>
+    </div>
+  </div>
+
+</body>
+</html>

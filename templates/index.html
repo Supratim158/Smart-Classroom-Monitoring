@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Classroom Monitoring</title>
+
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Passion+One&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Iceland&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}" />
+
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: 
+        linear-gradient(to bottom, #ccb6e4, #3e0371),   
+        linear-gradient(rgba(255, 255, 255, 0.163) 1px, transparent 1px),    
+        linear-gradient(90deg, rgba(255, 255, 255, 0.156) 1px, transparent 1px);  
+      background-size: cover, 40px 40px, 40px 40px;
+      background-blend-mode: overlay;
+      min-height: 100vh;
+      color: white;
+      padding-top: 40px;
+    }
+
+    h2 {
+      font-family: 'Passion One', cursive;
+      font-size: 4.0rem;
+      letter-spacing: 0.5px;
+      background: linear-gradient(to right, #21013d, #ad68be);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      margin-bottom: 20px;
+      margin-top: 5px;
+    }
+
+    h2:hover {
+  transform: scale(1.05);
+  text-shadow:  0 0 30px #be95e9;
+  transition: all 0.3s ease-in-out;
+}
+
+
+    .container {
+      padding: 20px;
+      max-width: 1200px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 3px solid rgba(241, 237, 129, 0.666);
+      backdrop-filter: blur(5px);
+      border-radius: 25px;
+      padding: 15px;
+      height: 240px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 0 13px rgba(65, 65, 65, 0.558);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(241, 233, 80, 0.714);
+    }
+
+    .card-icon {
+      font-size: 50px;
+    }
+
+.card-title {
+  font-size: 1.3rem;
+  margin-top: 10px;
+  color: #ffffff;
+  font-family: 'Iceland', sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px rgba(49, 47, 47, 0.5);
+}
+
+
+
+    .card-text {
+      font-size: 0.95rem;
+      margin-bottom: auto;
+      color: #ffffff99;
+    }
+
+    .btn {
+      border-radius: 30px;
+      font-weight: bold;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #140ca3, #7170cc);
+      border: none;
+    }
+    .btn-primary:hover {
+  color: black !important;
+}
+
+
+    .btn-success {
+      background: linear-gradient(to right, #035a3e, #65bb9f);
+      border: none;
+    }
+    .btn-success:hover {
+  color: black !important;
+}
+
+
+    .btn-danger {
+      background: linear-gradient(to right, #6b0707, #f87171);
+      border: none;
+    }
+    .btn-danger:hover {
+  color: black !important;
+}
+
+    .btn-warning {
+      background: linear-gradient(to right, #9f5602, #ffcc70);
+      color: white;
+      border: none;
+    }
+    .btn-warning:hover {
+  color: black !important;
+}
+
+    .btn-info {
+      background: linear-gradient(to right, #0052aa, #76cbe8);
+      border: none;
+      color: white;
+    }
+    .btn-info:hover {
+  color: black !important;
+}
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .row.g-4 {
+      row-gap: 20px;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>SMART  CLASSROOM  MONITORING</h2>
+
+    <div class="row g-4 ">
+      <!-- Card 1 -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-icon">👩‍🎓</div>
+          <h5 class="card-title">REGISTER STUDENT</h5>
+          <p class="card-text">Register student face using webcam for attendance & monitoring.</p>
+          <a href="{{ url_for('register_form') }}" class="btn btn-primary px-4">Go to Register</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h5 class="card-title">ATTENDENCE REGISTER</h5>
+          <p class="card-text">View daily attendance of students automatically recorded.</p>
+          <a href="{{ url_for('attendance_records') }}" class="btn btn-success px-4">Check Attendance</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-icon">🚨</div>
+          <h5 class="card-title">ALERTS</h5>
+          <p class="card-text">Check if any student was found sleeping or using phone.</p>
+          <a href="{{ url_for('view_alerts') }}" class="btn btn-danger px-4">View Alerts</a>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-icon">🎥</div>
+          <h5 class="card-title">START WEBCAM</h5>
+          <p class="card-text">Start monitoring to detect phone usage or sleeping students.</p>
+          <a href="{{ url_for('start_webcam') }}" class="btn btn-warning px-4">Start</a>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <h5 class="card-title">GIVE ATTENDENCE</h5>
+          <p class="card-text">Give attendance.</p>
+          <form action="{{ url_for('start_attendance') }}" method="POST">
+              <button type="submit" class="btn btn-info px-4">Attendance</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
